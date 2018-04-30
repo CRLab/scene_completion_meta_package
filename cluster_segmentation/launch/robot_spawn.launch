@@ -1,0 +1,44 @@
+<launch>
+
+  <arg name="robot" default="fetch"/>
+  <arg name="debug" default="false"/>
+  <arg name="gui" default="true"/>
+  <arg name="headless" default="false"/>
+
+  <!--Include description and control launch files-->
+  <env name="GAZEBO_MODEL_PATH" value="$(find fetch_gazebo)/models:$(optenv GAZEBO_MODEL_PATH)" />
+  <include file="$(find fetch_gazebo)/launch/include/$(arg robot).launch.xml">
+    <arg name="x" value="0.0"/>
+    <arg name="y" value="1.8"/>
+    <arg name="z" value="0.0"/>
+    <arg name="yaw" value="0.0"/>
+  </include>
+
+  <!--Launch a gazebo world-->
+  <include file="$(find gazebo_ros)/launch/empty_world.launch">
+    <arg name="world_name" value="$(find obj_recognition)/worlds/pr2_perception.world"/>
+    <arg name="paused" value="false"/>
+    <arg name="use_sim_time" value="true"/>
+    <arg name="gui" value="true"/>
+    <arg name="headless" value="false"/>
+    <arg name="debug" value="false"/>
+  </include>
+
+  <!-- cloud transformer-->
+  <node name="cloud_transformer" pkg="obj_recognition" type="obj_recognition_cloud_transformer" respawn="false"/>
+
+  <!-- feature extractor-->
+  <node name="feature_extractor" pkg="obj_recognition" type="obj_recognition_feature_extractor" respawn="false"/>
+
+  <!-- Start navigation -->
+  <include file="$(find fetch_gazebo_demo)/launch/fetch_nav.launch" />
+
+  <!-- Start MoveIt -->
+  <include file="$(find fetch_moveit_config)/launch/move_group.launch" >
+    <arg name="info" value="true"/><!-- publish grasp markers -->
+  </include>
+
+  <!-- Start RViz -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find fetch_gazebo_demo)/config/pick_place_demo.rviz"/>
+
+</launch>

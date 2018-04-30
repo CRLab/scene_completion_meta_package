@@ -1,0 +1,13 @@
+location: dependencies
+sources:
+
+- name: curvox
+  repo: https://github.com/CRLab/curvox.git
+  rev: master
+  scripts:
+  - pip2 install . --process-dependency-links --user
+- name: pycollada
+  repo: https://github.com/pycollada/pycollada.git
+  rev: master
+  scripts:
+  - python setup.py install --user

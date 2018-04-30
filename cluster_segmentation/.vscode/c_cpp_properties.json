@@ -1,0 +1,21 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/david/ros/curpp_ws/devel/include",
+        "/opt/ros/kinetic/include",
+        "/home/david/ros/curpp_ws/src/fetch_ros/fetch_depth_layer/include",
+        "/home/david/ros/curpp_ws/src/fetch_gazebo/fetch_gazebo/include",
+        "/home/david/ros/curpp_ws/src/fetch_ros/fetch_ikfast_plugin/include",
+        "/home/david/ros/curpp_ws/src/graspit_interface/include",
+        "/home/david/ros/curpp_ws/src/grid_sample_plugin/grid_sample_plugin/include",
+        "/usr/include"
+      ],
+      "name": "Linux"
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+*.*~
+*.h5
+*.pyc
+scripts/shape_completion_server/trained_models/*

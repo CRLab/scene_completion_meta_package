@@ -1,0 +1,5 @@
+<launch>
+	<arg name="robot" />
+	<node name="pc_scene_completion" pkg="pc_scene_completion" type="pc_scene_completion_node" output="screen"/>
+
+</launch>
